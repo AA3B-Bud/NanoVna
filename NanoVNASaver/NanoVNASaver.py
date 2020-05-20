@@ -1768,8 +1768,8 @@ class AboutWindow(QtWidgets.QWidget):
         layout.addWidget(QtWidgets.QLabel("This program is licensed under the GNU General Public License version 3"))
         layout.addWidget(QtWidgets.QLabel(""))
         link_label = QtWidgets.QLabel("For further details, see: " +
-                                      "<a href=\"https://mihtjel.github.io/tinysa-saver/\">" +
-                                      "https://mihtjel.github.io/tinysa-saver/</a>")
+                                      "<a href=\"https://erikkaashoek.github.io/tinysa-saver/\">" +
+                                      "https://erikkaashoek.github.io/tinysa-saver/</a>")
         link_label.setOpenExternalLinks(True)
         layout.addWidget(link_label)
         layout.addWidget(QtWidgets.QLabel(""))
@@ -1847,7 +1847,7 @@ class AboutWindow(QtWidgets.QWidget):
     def findUpdates(self, automatic=False):
         from urllib import request, error
         import json
-        update_url = "http://mihtjel.dk/tinysa-saver/latest.json"
+        update_url = "http://erikkaashoek.dk/tinysa-saver/latest.json"
 
         try:
             req = request.Request(update_url)

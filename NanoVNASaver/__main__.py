@@ -30,7 +30,7 @@ def main():
     print("This program comes with ABSOLUTELY NO WARRANTY")
     print("This program is licensed under the GNU General Public License version 3")
     print("")
-    print("See https://github.com/mihtjel/tinysa-saver for further details")
+    print("See https://github.com/erikkaashoek/tinysa-saver for further details")
     # Main code goes here
     console_log_level = logging.WARNING
     file_log_level = logging.DEBUG

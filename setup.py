@@ -35,7 +35,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='TinySASaver',
-    url='https://github.com/mihtjel/tinysa-saver',
+    url='https://github.com/erikkaashoek/tinysa-saver',
     version=version,
     author='Rune B. Broberg',
     author_email='',

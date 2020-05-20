@@ -1,7 +1,7 @@
-[![Latest Release](https://img.shields.io/github/v/release/mihtjel/tinysa-saver.svg)](https://github.com/mihtjel/tinysa-saver/releases/latest)
-[![License](https://img.shields.io/github/license/mihtjel/tinysa-saver.svg)](https://github.com/mihtjel/tinysa-saver/blob/master/LICENSE)
-[![Downloads](https://img.shields.io/github/downloads/mihtjel/tinysa-saver/total.svg)](https://github.com/mihtjel/tinysa-saver/releases/)
-[![GitHub Releases](https://img.shields.io/github/downloads/mihtjel/tinysa-saver/latest/total)](https://github.com/mihtjel/tinysa-saver/releases/latest)
+[![Latest Release](https://img.shields.io/github/v/release/erikkaashoek/tinysa-saver.svg)](https://github.com/erikkaashoek/tinysa-saver/releases/latest)
+[![License](https://img.shields.io/github/license/erikkaashoek/tinysa-saver.svg)](https://github.com/erikkaashoek/tinysa-saver/blob/master/LICENSE)
+[![Downloads](https://img.shields.io/github/downloads/erikkaashoek/tinysa-saver/total.svg)](https://github.com/erikkaashoek/tinysa-saver/releases/)
+[![GitHub Releases](https://img.shields.io/github/downloads/erikkaashoek/tinysa-saver/latest/total)](https://github.com/erikkaashoek/tinysa-saver/releases/latest)
 [![Donate](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=T8KTGVDQF5K6E&item_name=TinySASaver+Development&currency_code=EUR&source=url)
 
 Attention!!!! This is tinySA-saver derived from TinySASaver
@@ -43,7 +43,7 @@ Current features:
 The software was written in Python on Windows, using Pycharm, and the modules PyQT5, numpy, scipy and pyserial.
 
 #### Binary releases
-You can find the latest binary (.exe) release for Windows at https://github.com/mihtjel/tinysa-saver/releases/latest
+You can find the latest binary (.exe) release for Windows at https://github.com/erikkaashoek/tinysa-saver/releases/latest
 
 The downloadable executable runs directly, and requires no installation. For Windows 7, it does require Service Pack 1
 and [Microsoft VC++ Redistributable](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads).
@@ -53,7 +53,7 @@ For most users, this is already installed.
 
 1. Clone repo and cd into the directory
 
-        git clone https://github.com/mihtjel/tinysa-saver
+        git clone https://github.com/erikkaashoek/tinysa-saver
         cd tinysa-saver
 
 3. Run the pip installation
@@ -73,7 +73,7 @@ For most users, this is already installed.
 
 3. Clone repo and cd into the directory 
 		
-        git clone https://github.com/mihtjel/tinysa-saver
+        git clone https://github.com/erikkaashoek/tinysa-saver
         cd tinysa-saver
 
 4. Run the pip installation
@@ -100,7 +100,7 @@ For most users, this is already installed.
 
 3. TinySASaver Installation
 
-        git clone https://github.com/mihtjel/tinysa-saver
+        git clone https://github.com/erikkaashoek/tinysa-saver
         cd tinysa-saver
         
 4. Install local pip packages
