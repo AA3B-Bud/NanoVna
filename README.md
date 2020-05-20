@@ -9,10 +9,10 @@ Attention!!!! This is tinySA-saver derived from TinySASaver
 
 TinySASaver
 ============
-A multiplatform tool to save Touchstone files from the TinySA, sweep frequency spans in segments to gain more than
-101 data points, and generally display and analyze the resulting data.
+A multiplatform tool to save scans from the TinySA, sweep frequency spans in segments to gain more than
+290 data points, and generally display and analyze the resulting data.
 
-Copyright 2019 Rune B. Broberg
+Copyright 2019 Rune B. Broberg, 2020 Erik Kaashoek
 
 ## Introduction
 This software connects to a TinySA and extracts the data for display on a computer, and for saving to Touchstone files.
