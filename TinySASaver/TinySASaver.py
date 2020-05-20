@@ -1847,7 +1847,7 @@ class AboutWindow(QtWidgets.QWidget):
     def findUpdates(self, automatic=False):
         from urllib import request, error
         import json
-        update_url = "http://erikkaashoek.dk/tinysa-saver/latest.json"
+        update_url = "http://tinysa.org/tinysa-saver/latest.json"
 
         try:
             req = request.Request(update_url)

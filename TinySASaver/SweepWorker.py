@@ -80,7 +80,7 @@ class SweepWorker(QtCore.QRunnable):
         if self.app.sweepStartInput.text() == "" or self.app.sweepEndInput.text() == "":
             logger.debug("First sweep - standard range")
             # We should handle the first startup by reading frequencies?
-            sweep_from = 100000
+            sweep_from = 0
             sweep_to = 350000000
         else:
             sweep_from = RFTools.parseFrequency(self.app.sweepStartInput.text())
@@ -350,11 +350,11 @@ class SweepWorker(QtCore.QRunnable):
                 a = d
                 b = 0
                 try:
-                    if self.vna.validateInput and (float(a) < -9.5 or float(a) > 9.5):
+                    if self.vna.validateInput and (float(a) < -200.0 or float(a) > 200.0):
                         logger.warning("Got a non-float data value: %s (%s)", d, a)
                         logger.debug("Re-reading %s", data)
                         done = False
-                    elif self.vna.validateInput and (float(b) < -9.5 or float(b) > 9.5):
+                    elif self.vna.validateInput and (float(b) < -200.0 or float(b) > 200.0):
                         logger.warning("Got a non-float data value: %s (%s)", d, b)
                         logger.debug("Re-reading %s", data)
                         done = False
