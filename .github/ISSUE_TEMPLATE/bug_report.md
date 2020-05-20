@@ -26,7 +26,7 @@ If applicable, add screenshots to help explain your problem.
 **Desktop (please complete the following information):**
  - OS: [e.g. iOS]
  - Python version: [if applicable]
- - NanoVNA-Saver version: [e.g. 0.1.4]
+ - TinySA-Saver version: [e.g. 0.1.4]
 
 **Additional context**
 Add any other context about the problem here.

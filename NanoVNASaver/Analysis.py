@@ -1,4 +1,4 @@
-#  NanoVNASaver - a python program to view and export Touchstone data from a NanoVNA
+#  TinySASaver - a python program to view and export Touchstone data from a TinySA
 #  Copyright (C) 2019.  Rune B. Broberg
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@ import math
 
 from PyQt5 import QtWidgets
 
-from NanoVNASaver.RFTools import RFTools
+from TinySASaver.RFTools import RFTools
 from scipy import signal
 import numpy as np
 
@@ -29,8 +29,8 @@ class Analysis:
     _widget = None
 
     def __init__(self, app):
-        from NanoVNASaver.NanoVNASaver import NanoVNASaver
-        self.app: NanoVNASaver = app
+        from TinySASaver.TinySASaver import TinySASaver
+        self.app: TinySASaver = app
 
     def widget(self) -> QtWidgets.QWidget:
         return self._widget

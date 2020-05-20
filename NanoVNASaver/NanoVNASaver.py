@@ -1,4 +1,4 @@
-#  NanoVNASaver - a python program to view and export Touchstone data from a NanoVNA
+#  TinySASaver - a python program to view and export Touchstone data from a TinySA
 #  Copyright (C) 2019.  Rune B. Broberg
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -48,7 +48,7 @@ PID = 22336
 logger = logging.getLogger(__name__)
 
 
-class NanoVNASaver(QtWidgets.QWidget):
+class TinySASaver(QtWidgets.QWidget):
     version = ver
     default_marker_colors = [QtGui.QColor(255, 0, 0),
                              QtGui.QColor(0, 255, 0),
@@ -72,7 +72,7 @@ class NanoVNASaver(QtWidgets.QWidget):
         self.setWindowIcon(self.icon)
         self.settings = QtCore.QSettings(QtCore.QSettings.IniFormat,
                                          QtCore.QSettings.UserScope,
-                                         "NanoVNASaver", "NanoVNASaver")
+                                         "TinySASaver", "TinySASaver")
         print("Settings: " + self.settings.fileName())
         self.threadpool = QtCore.QThreadPool()
         self.vna: VNA = InvalidVNA()
@@ -107,7 +107,7 @@ class NanoVNASaver(QtWidgets.QWidget):
 
         logger.debug("Building user interface")
 
-        self.baseTitle = "NanoVNA Saver " + NanoVNASaver.version
+        self.baseTitle = "TinySA Saver " + TinySASaver.version
         self.updateTitle()
         layout = QtWidgets.QGridLayout()
         scrollarea = QtWidgets.QScrollArea()
@@ -453,7 +453,7 @@ class NanoVNASaver(QtWidgets.QWidget):
 
         serial_button_layout = QtWidgets.QHBoxLayout()
 
-        self.btnSerialToggle = QtWidgets.QPushButton("Connect to NanoVNA")
+        self.btnSerialToggle = QtWidgets.QPushButton("Connect to TinySA")
         self.btnSerialToggle.clicked.connect(self.serialButtonClick)
         serial_button_layout.addWidget(self.btnSerialToggle, stretch=1)
 
@@ -553,7 +553,7 @@ class NanoVNASaver(QtWidgets.QWidget):
             if (d.vid == VID and
                     d.pid == PID):
                 port = d.device
-                logger.info("Found NanoVNA (%04x %04x) on port %s", d.vid, d.pid, d.device)
+                logger.info("Found TinySA (%04x %04x) on port %s", d.vid, d.pid, d.device)
                 return_ports.append(port)
         return return_ports
 
@@ -680,10 +680,10 @@ class NanoVNASaver(QtWidgets.QWidget):
 
     def stopSerial(self):
         if self.serialLock.acquire():
-            logger.info("Closing connection to NanoVNA")
+            logger.info("Closing connection to TinySA")
             self.serial.close()
             self.serialLock.release()
-            self.btnSerialToggle.setText("Connect to NanoVNA")
+            self.btnSerialToggle.setText("Connect to TinySA")
 
     def toggleSweepSettings(self, disabled):
         self.sweepStartInput.setDisabled(disabled)
@@ -1025,7 +1025,7 @@ class NanoVNASaver(QtWidgets.QWidget):
 
 
 class DisplaySettingsWindow(QtWidgets.QWidget):
-    def __init__(self, app: NanoVNASaver):
+    def __init__(self, app: TinySASaver):
         super().__init__()
 
         self.app = app
@@ -1673,7 +1673,7 @@ class DisplaySettingsWindow(QtWidgets.QWidget):
     def addMarker(self):
         marker_count = len(self.app.markers)
         if marker_count < 6:
-            color = NanoVNASaver.default_marker_colors[marker_count]
+            color = TinySASaver.default_marker_colors[marker_count]
         else:
             color = QtGui.QColor(QtCore.Qt.darkGray)
         new_marker = Marker("Marker " + str(marker_count+1), color)
@@ -1737,11 +1737,11 @@ class DisplaySettingsWindow(QtWidgets.QWidget):
 
 
 class AboutWindow(QtWidgets.QWidget):
-    def __init__(self, app: NanoVNASaver):
+    def __init__(self, app: TinySASaver):
         super().__init__()
         self.app = app
 
-        self.setWindowTitle("About NanoVNASaver")
+        self.setWindowTitle("About TinySASaver")
         self.setWindowIcon(self.app.icon)
         top_layout = QtWidgets.QHBoxLayout()
         self.setLayout(top_layout)
@@ -1761,20 +1761,20 @@ class AboutWindow(QtWidgets.QWidget):
         layout = QtWidgets.QVBoxLayout()
         top_layout.addLayout(layout)
 
-        layout.addWidget(QtWidgets.QLabel("NanoVNASaver version " + NanoVNASaver.version))
+        layout.addWidget(QtWidgets.QLabel("TinySASaver version " + TinySASaver.version))
         layout.addWidget(QtWidgets.QLabel(""))
         layout.addWidget(QtWidgets.QLabel("\N{COPYRIGHT SIGN} Copyright 2019 Rune B. Broberg"))
         layout.addWidget(QtWidgets.QLabel("This program comes with ABSOLUTELY NO WARRANTY"))
         layout.addWidget(QtWidgets.QLabel("This program is licensed under the GNU General Public License version 3"))
         layout.addWidget(QtWidgets.QLabel(""))
         link_label = QtWidgets.QLabel("For further details, see: " +
-                                      "<a href=\"https://mihtjel.github.io/nanovna-saver/\">" +
-                                      "https://mihtjel.github.io/nanovna-saver/</a>")
+                                      "<a href=\"https://mihtjel.github.io/TinySA-saver/\">" +
+                                      "https://mihtjel.github.io/TinySA-saver/</a>")
         link_label.setOpenExternalLinks(True)
         layout.addWidget(link_label)
         layout.addWidget(QtWidgets.QLabel(""))
 
-        self.versionLabel = QtWidgets.QLabel("NanoVNA Firmware Version: Not connected.")
+        self.versionLabel = QtWidgets.QLabel("TinySA Firmware Version: Not connected.")
         layout.addWidget(self.versionLabel)
 
         layout.addStretch()
@@ -1820,7 +1820,7 @@ class AboutWindow(QtWidgets.QWidget):
         if self.app.vna.isValid():
             logger.debug("Valid VNA")
             v: Version = self.app.vna.version
-            self.versionLabel.setText("NanoVNA Firmware Version: " + self.app.vna.name + " " + v.version_string)
+            self.versionLabel.setText("TinySA Firmware Version: " + self.app.vna.name + " " + v.version_string)
 
     def updateSettings(self):
         if self.updateCheckBox.isChecked():
@@ -1831,7 +1831,7 @@ class AboutWindow(QtWidgets.QWidget):
     def askAboutUpdates(self):
         logger.debug("Asking about automatic update checks")
         selection = QtWidgets.QMessageBox.question(self.app, "Enable checking for updates?",
-                                                   "Would you like NanoVNA-Saver to check for updates automatically?")
+                                                   "Would you like TinySA-Saver to check for updates automatically?")
         if selection == QtWidgets.QMessageBox.Yes:
             self.updateCheckBox.setChecked(True)
             self.app.settings.setValue("CheckForUpdates", "Yes")
@@ -1847,11 +1847,11 @@ class AboutWindow(QtWidgets.QWidget):
     def findUpdates(self, automatic=False):
         from urllib import request, error
         import json
-        update_url = "http://mihtjel.dk/nanovna-saver/latest.json"
+        update_url = "http://mihtjel.dk/TinySA-saver/latest.json"
 
         try:
             req = request.Request(update_url)
-            req.add_header('User-Agent', "NanoVNA-Saver/" + self.app.version)
+            req.add_header('User-Agent', "TinySA-Saver/" + self.app.version)
             updates = json.load(request.urlopen(req, timeout=3))
             latest_version = Version(updates['version'])
             latest_url = updates['url']
@@ -1869,18 +1869,18 @@ class AboutWindow(QtWidgets.QWidget):
             return
 
         logger.info("Latest version is " + latest_version.version_string)
-        this_version = Version(NanoVNASaver.version)
+        this_version = Version(TinySASaver.version)
         logger.info("This is " + this_version.version_string)
         if latest_version > this_version:
             logger.info("New update available: %s!", latest_version)
             if automatic:
                 QtWidgets.QMessageBox.information(self, "Updates available",
-                                                  "There is a new update for NanoVNA-Saver available!\n" +
+                                                  "There is a new update for TinySA-Saver available!\n" +
                                                   "Version " + latest_version.version_string + "\n\n" +
                                                   "Press \"About\" to find the update.")
             else:
                 QtWidgets.QMessageBox.information(self, "Updates available",
-                                                  "There is a new update for NanoVNA-Saver available!")
+                                                  "There is a new update for TinySA-Saver available!")
             self.updateLabel.setText("<a href=\"" + latest_url + "\">New version available</a>.")
             self.updateLabel.setOpenExternalLinks(True)
         else:
@@ -1896,7 +1896,7 @@ class AboutWindow(QtWidgets.QWidget):
 class TDRWindow(QtWidgets.QWidget):
     updated = QtCore.pyqtSignal()
 
-    def __init__(self, app: NanoVNASaver):
+    def __init__(self, app: TinySASaver):
         super().__init__()
         self.app = app
 
@@ -2018,7 +2018,7 @@ class TDRWindow(QtWidgets.QWidget):
 
 
 class SweepSettingsWindow(QtWidgets.QWidget):
-    def __init__(self, app: NanoVNASaver):
+    def __init__(self, app: TinySASaver):
         super().__init__()
 
         self.app = app
@@ -2168,7 +2168,7 @@ class BandsWindow(QtWidgets.QWidget):
     def __init__(self, app):
         super().__init__()
 
-        self.app: NanoVNASaver = app
+        self.app: TinySASaver = app
         self.setWindowTitle("Manage bands")
         self.setWindowIcon(self.app.icon)
 
@@ -2239,7 +2239,7 @@ class BandsModel(QtCore.QAbstractTableModel):
         super().__init__()
         self.settings = QtCore.QSettings(QtCore.QSettings.IniFormat,
                                          QtCore.QSettings.UserScope,
-                                         "NanoVNASaver", "Bands")
+                                         "TinySASaver", "Bands")
         self.settings.setIniCodec("UTF-8")
         self.enabled = self.settings.value("ShowBands", False, bool)
 
@@ -2343,7 +2343,7 @@ class AnalysisWindow(QtWidgets.QWidget):
     def __init__(self, app):
         super().__init__()
 
-        self.app: NanoVNASaver = app
+        self.app: TinySASaver = app
         self.setWindowTitle("Sweep analysis")
         self.setWindowIcon(self.app.icon)
 
@@ -2454,7 +2454,7 @@ class MarkerSettingsWindow(QtWidgets.QWidget):
                     "s21phase"
                     ]
 
-    def __init__(self, app: NanoVNASaver):
+    def __init__(self, app: TinySASaver):
         super().__init__()
         self.app = app
 
@@ -2590,7 +2590,7 @@ class MarkerSettingsWindow(QtWidgets.QWidget):
 
 
 class DeviceSettingsWindow(QtWidgets.QWidget):
-    def __init__(self, app: NanoVNASaver):
+    def __init__(self, app: TinySASaver):
         super().__init__()
 
         self.app = app

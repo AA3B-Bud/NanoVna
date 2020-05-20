@@ -1,5 +1,5 @@
-#  NanoVNASaver - a python program to view and export Touchstone data from a NanoVNA
-#  NanoVNASaver - a python program to view and export Touchstone data from a NanoVNA
+#  TinySASaver - a python program to view and export Touchstone data from a TinySA
+#  TinySASaver - a python program to view and export Touchstone data from a TinySA
 #  Copyright (C) 2019.  Rune B. Broberg
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -22,10 +22,10 @@ import numpy as np
 from PyQt5 import QtCore
 from PyQt5.QtCore import pyqtSlot, pyqtSignal
 
-import NanoVNASaver
-from NanoVNASaver.Calibration import Calibration
-from NanoVNASaver.Hardware import VNA, InvalidVNA
-from NanoVNASaver.RFTools import RFTools, Datapoint
+import TinySASaver
+from TinySASaver.Calibration import Calibration
+from TinySASaver.Hardware import VNA, InvalidVNA
+from TinySASaver.RFTools import RFTools, Datapoint
 
 logger = logging.getLogger(__name__)
 
@@ -38,7 +38,7 @@ class WorkerSignals(QtCore.QObject):
 
 
 class SweepWorker(QtCore.QRunnable):
-    def __init__(self, app: NanoVNASaver):
+    def __init__(self, app: TinySASaver):
         super().__init__()
         logger.info("Initializing SweepWorker")
         self.signals = WorkerSignals()
@@ -66,7 +66,7 @@ class SweepWorker(QtCore.QRunnable):
         self.running = True
         self.percentage = 0
         if not self.app.serial.is_open:
-            logger.debug("Attempted to run without being connected to the NanoVNA")
+            logger.debug("Attempted to run without being connected to the TinySA")
             self.running = False
             return
 
@@ -139,12 +139,12 @@ class SweepWorker(QtCore.QRunnable):
                     self.percentage = (i+1)*100/self.noSweeps
                     logger.debug("Saving acquired data")
                     self.saveData(frequencies, values, values21)
-                except NanoVNAValueException as e:
+                except TinySAValueException as e:
                     self.error_message = str(e)
                     self.stopped = True
                     self.running = False
                     self.signals.sweepError.emit()
-                except NanoVNASerialException as e:
+                except TinySASerialException as e:
                     self.error_message = str(e)
                     self.stopped = True
                     self.running = False
@@ -162,19 +162,19 @@ class SweepWorker(QtCore.QRunnable):
                     _, values, values21 = self.readSegment(start, start + 290 * stepsize)
                     logger.debug("Updating acquired data")
                     self.updateData(values, values21, i)
-                except NanoVNAValueException as e:
+                except TinySAValueException as e:
                     self.error_message = str(e)
                     self.stopped = True
                     self.running = False
                     self.signals.sweepError.emit()
-                except NanoVNASerialException as e:
+                except TinySASerialException as e:
                     self.error_message = str(e)
                     self.stopped = True
                     self.running = False
                     self.signals.sweepFatalError.emit()
 
         # Reset the device to show the full range
-        logger.debug("Resetting NanoVNA sweep to full range: %d to %d",
+        logger.debug("Resetting TinySA sweep to full range: %d to %d",
                      RFTools.parseFrequency(self.app.sweepStartInput.text()),
                      RFTools.parseFrequency(self.app.sweepEndInput.text()))
         self.vna.resetSweep(RFTools.parseFrequency(self.app.sweepStartInput.text()),
@@ -343,7 +343,7 @@ class SweepWorker(QtCore.QRunnable):
             tmpdata = self.vna.readValues(data)
             if not tmpdata:
                 logger.warning("Read no values")
-                raise NanoVNASerialException("Failed reading data: Returned no values.")
+                raise TinySASerialException("Failed reading data: Returned no values.")
             logger.debug("Read %d values", len(tmpdata))
             for d in tmpdata:
  #               a, b = d.split(" ")
@@ -371,7 +371,7 @@ class SweepWorker(QtCore.QRunnable):
                     logger.error("Tried and failed to read %s %d times.", data, count)
                 if count >= 20:
                     logger.critical("Tried and failed to read %s %d times. Giving up.", data, count)
-                    raise NanoVNAValueException("Failed reading " + str(data) + " " + str(count) + " times.\n" +
+                    raise TinySAValueException("Failed reading " + str(data) + " " + str(count) + " times.\n" +
                                                 "Data outside expected valid ranges, or in an unexpected format.\n\n" +
                                                 "You can disable data validation on the device settings screen.")
         return returndata
@@ -388,7 +388,7 @@ class SweepWorker(QtCore.QRunnable):
             tmpfreq = self.vna.readFrequencies()
             if not tmpfreq:
                 logger.warning("Read no frequencies")
-                raise NanoVNASerialException("Failed reading frequencies: Returned no values.")
+                raise TinySASerialException("Failed reading frequencies: Returned no values.")
             for f in tmpfreq:
                 if not f.isdigit():
                     logger.warning("Got a non-digit frequency: %s", f)
@@ -398,8 +398,8 @@ class SweepWorker(QtCore.QRunnable):
                     if count == 10:
                         logger.error("Tried and failed %d times to read frequencies.", count)
                     if count >= 20:
-                        logger.critical("Tried and failed to read frequencies from the NanoVNA %d times.", count)
-                        raise NanoVNAValueException("Failed reading frequencies " + str(count) + " times.")
+                        logger.critical("Tried and failed to read frequencies from the TinySA %d times.", count)
+                        raise TinySAValueException("Failed reading frequencies " + str(count) + " times.")
                 else:
                     returnfreq.append(int(f))
         return returnfreq
@@ -419,9 +419,9 @@ class SweepWorker(QtCore.QRunnable):
         self.vna = vna
 
 
-class NanoVNAValueException(Exception):
+class TinySAValueException(Exception):
     pass
 
 
-class NanoVNASerialException(Exception):
+class TinySASerialException(Exception):
     pass

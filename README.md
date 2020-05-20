@@ -1,24 +1,24 @@
-[![Latest Release](https://img.shields.io/github/v/release/mihtjel/nanovna-saver.svg)](https://github.com/mihtjel/nanovna-saver/releases/latest)
-[![License](https://img.shields.io/github/license/mihtjel/nanovna-saver.svg)](https://github.com/mihtjel/nanovna-saver/blob/master/LICENSE)
-[![Downloads](https://img.shields.io/github/downloads/mihtjel/nanovna-saver/total.svg)](https://github.com/mihtjel/nanovna-saver/releases/)
-[![GitHub Releases](https://img.shields.io/github/downloads/mihtjel/nanovna-saver/latest/total)](https://github.com/mihtjel/nanovna-saver/releases/latest)
-[![Donate](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=T8KTGVDQF5K6E&item_name=NanoVNASaver+Development&currency_code=EUR&source=url)
+[![Latest Release](https://img.shields.io/github/v/release/mihtjel/TinySA-saver.svg)](https://github.com/mihtjel/TinySA-saver/releases/latest)
+[![License](https://img.shields.io/github/license/mihtjel/TinySA-saver.svg)](https://github.com/mihtjel/TinySA-saver/blob/master/LICENSE)
+[![Downloads](https://img.shields.io/github/downloads/mihtjel/TinySA-saver/total.svg)](https://github.com/mihtjel/TinySA-saver/releases/)
+[![GitHub Releases](https://img.shields.io/github/downloads/mihtjel/TinySA-saver/latest/total)](https://github.com/mihtjel/TinySA-saver/releases/latest)
+[![Donate](https://img.shields.io/badge/paypal-donate-yellow.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=T8KTGVDQF5K6E&item_name=TinySASaver+Development&currency_code=EUR&source=url)
 
-Attention!!!! This is tinySA-saver derived from NanoVNASaver
+Attention!!!! This is tinySA-saver derived from TinySASaver
 
 
-NanoVNASaver
+TinySASaver
 ============
-A multiplatform tool to save Touchstone files from the NanoVNA, sweep frequency spans in segments to gain more than
+A multiplatform tool to save Touchstone files from the TinySA, sweep frequency spans in segments to gain more than
 101 data points, and generally display and analyze the resulting data.
 
 Copyright 2019 Rune B. Broberg
 
 ## Introduction
-This software connects to a NanoVNA and extracts the data for display on a computer, and for saving to Touchstone files.
+This software connects to a TinySA and extracts the data for display on a computer, and for saving to Touchstone files.
 
 Current features:
-- Reading data from a NanoVNA
+- Reading data from a TinySA
 - Splitting a frequency range into multiple segments to increase resolution (tried up to >10k points)
 - Averaging data for better results particularly at higher frequencies
 - Displaying data on multiple chart types, such as Smith, LogMag, Phase and VSWR-charts, for both S11 and S21
@@ -28,7 +28,7 @@ Current features:
 - TDR function (measurement of cable length) - including impedance display
 - Filter analysis functions for low-pass, high-pass, band-pass and band-stop filters
 - Display of both an active and a reference trace
-- Live updates of data from the NanoVNA, including for multi-segment sweeps
+- Live updates of data from the TinySA, including for multi-segment sweeps
 - In-application calibration, including compensation for non-ideal calibration standards
 - Customizable display options, including "dark mode"
 - Exporting images of plotted values
@@ -43,7 +43,7 @@ Current features:
 The software was written in Python on Windows, using Pycharm, and the modules PyQT5, numpy, scipy and pyserial.
 
 #### Binary releases
-You can find the latest binary (.exe) release for Windows at https://github.com/mihtjel/nanovna-saver/releases/latest
+You can find the latest binary (.exe) release for Windows at https://github.com/mihtjel/TinySA-saver/releases/latest
 
 The downloadable executable runs directly, and requires no installation. For Windows 7, it does require Service Pack 1
 and [Microsoft VC++ Redistributable](https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads).
@@ -53,8 +53,8 @@ For most users, this is already installed.
 
 1. Clone repo and cd into the directory
 
-        git clone https://github.com/mihtjel/nanovna-saver
-        cd nanovna-saver
+        git clone https://github.com/mihtjel/TinySA-saver
+        cd TinySA-saver
 
 3. Run the pip installation
 
@@ -62,7 +62,7 @@ For most users, this is already installed.
 
 4. Once completed run with the following command
 
-        NanoVNASaver
+        TinySASaver
 
 ### Linux
 #### Ubuntu 18.04 & 19.04
@@ -73,8 +73,8 @@ For most users, this is already installed.
 
 3. Clone repo and cd into the directory 
 		
-        git clone https://github.com/mihtjel/nanovna-saver
-        cd nanovna-saver
+        git clone https://github.com/mihtjel/TinySA-saver
+        cd TinySA-saver
 
 4. Run the pip installation
 
@@ -84,7 +84,7 @@ For most users, this is already installed.
     
 5. Once completed run with the following command
 
-        python3.7 nanovna-saver.py
+        python3.7 TinySA-saver.py
     
     
 ### Mac OS:
@@ -98,21 +98,21 @@ For most users, this is already installed.
 
         brew install python
 
-3. NanoVNASaver Installation
+3. TinySASaver Installation
 
-        git clone https://github.com/mihtjel/nanovna-saver
-        cd nanovna-saver
+        git clone https://github.com/mihtjel/TinySA-saver
+        cd TinySA-saver
         
 4. Install local pip packages
 
         python3 -m pip install .
-        NanoVNASaver
+        TinySASaver
 
 ## Using the software
 
-Connect your NanoVNA to a serial port, and enter this serial port in the serial port box.  If the NanoVNA is
+Connect your TinySA to a serial port, and enter this serial port in the serial port box.  If the TinySA is
 connected before the application starts, it should be automatically detected. Otherwise, click "Rescan". Click
-"Connect to NanoVNA" to connect.
+"Connect to TinySA" to connect.
 
 The app can collect multiple segments to get more accurate measurements. Enter the number of segments to be done in the
 "Segments" box. Each segment is 101 data points, and takes about 1.5 seconds to complete.
@@ -127,8 +127,8 @@ Display settings are available under "Display setup". These allow changing the c
 and which graphs are displayed.  The settings are saved between program starts.
 
 ### Calibration
-_Before using NanoVNA-Saver, please ensure that the device itself is in a reasonable calibration state._ A calibration
-of both ports across the entire frequency span, saved to save slot 0, is sufficient.  If the NanoVNA is completely
+_Before using TinySA-Saver, please ensure that the device itself is in a reasonable calibration state._ A calibration
+of both ports across the entire frequency span, saved to save slot 0, is sufficient.  If the TinySA is completely
 uncalibrated, its readings may be outside the range accepted by the application.
 
 In-application calibration is available, either assuming ideal standards, or with relevant standard correction. To
@@ -164,17 +164,17 @@ You can use it, commercially as well. You may make changes to the code, but I (a
 changes back to the community.
 
 ## Links
-* Ohan Smit wrote an introduction to using the application: [https://zs1sci.com/blog/nanovnasaver/]
-* HexAndFlex wrote a 3-part (thus far) series on Getting Started with the NanoVNA:
-[https://hexandflex.com/2019/08/31/getting-started-with-the-nanovna-part-1/] - Part 3 is dedicated to NanoVNASaver:
-[https://hexandflex.com/2019/09/15/getting-started-with-the-nanovna-part-3-pc-software/]
+* Ohan Smit wrote an introduction to using the application: [https://zs1sci.com/blog/TinySAsaver/]
+* HexAndFlex wrote a 3-part (thus far) series on Getting Started with the TinySA:
+[https://hexandflex.com/2019/08/31/getting-started-with-the-TinySA-part-1/] - Part 3 is dedicated to TinySASaver:
+[https://hexandflex.com/2019/09/15/getting-started-with-the-TinySA-part-3-pc-software/]
 
 ## Credits
 Original application by Rune B. Broberg (5Q5R)
 
 Contributions and changes by Holger Müller, David Hunt and others.
 
-TDR inspiration shamelessly stolen from the work of Salil (VU2CWA) at https://nuclearrambo.com/wordpress/accurately-measuring-cable-length-with-nanovna/
+TDR inspiration shamelessly stolen from the work of Salil (VU2CWA) at https://nuclearrambo.com/wordpress/accurately-measuring-cable-length-with-TinySA/
 
 TDR cable types by Larry Goga.
 
@@ -185,4 +185,4 @@ the early instability of new versions.
 
 This software is available free of charge. If you read all this way, and you *still* want to support it, you may donate to the developer using the button below:
 
-[![Paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=T8KTGVDQF5K6E&item_name=NanoVNASaver+Development&currency_code=EUR&source=url)
+[![Paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=T8KTGVDQF5K6E&item_name=TinySASaver+Development&currency_code=EUR&source=url)
