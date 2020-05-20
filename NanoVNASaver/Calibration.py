@@ -1,4 +1,4 @@
-#  NanoVNASaver - a python program to view and export Touchstone data from a NanoVNA
+#  TinySASaver - a python program to view and export Touchstone data from a TinySA
 #  Copyright (C) 2019.  Rune B. Broberg
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -33,9 +33,9 @@ class CalibrationWindow(QtWidgets.QWidget):
     def __init__(self, app):
         super().__init__()
 
-        from .NanoVNASaver import NanoVNASaver
+        from .TinySASaver import TinySASaver
 
-        self.app: NanoVNASaver = app
+        self.app: TinySASaver = app
 
         self.setMinimumWidth(450)
         self.setWindowTitle("Calibration")
@@ -54,7 +54,7 @@ class CalibrationWindow(QtWidgets.QWidget):
         calibration_status_group = QtWidgets.QGroupBox("Active calibration")
         calibration_status_layout = QtWidgets.QFormLayout()
         self.calibration_status_label = QtWidgets.QLabel("Device calibration")
-        self.calibration_source_label = QtWidgets.QLabel("NanoVNA")
+        self.calibration_source_label = QtWidgets.QLabel("TinySA")
         calibration_status_layout.addRow("Calibration:", self.calibration_status_label)
         calibration_status_layout.addRow("Source:", self.calibration_source_label)
         calibration_status_group.setLayout(calibration_status_layout)
@@ -227,10 +227,10 @@ class CalibrationWindow(QtWidgets.QWidget):
             response = QtWidgets.QMessageBox.question(self, "Are you sure?", "Use of the manual calibration buttons " +
                                                       "is non-intuitive, and primarily suited for users with very " +
                                                       "specialized needs. The buttons do not sweep for you, nor do " +
-                                                      "they interact with the NanoVNA calibration.\n\n" +
-                                                      "If you are trying to do a calibration of the NanoVNA, do so " +
+                                                      "they interact with the TinySA calibration.\n\n" +
+                                                      "If you are trying to do a calibration of the TinySA, do so " +
                                                       "on the device itself instead. If you are trying to do a " +
-                                                      "calibration with NanoVNA-Saver, use the Calibration Assistant " +
+                                                      "calibration with TinySA-Saver, use the Calibration Assistant " +
                                                       "if possible.\n\n" +
                                                       "If you are certain you know what you are doing, click Yes.",
                                                       QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.Cancel,
@@ -633,14 +633,14 @@ class CalibrationWindow(QtWidgets.QWidget):
         introduction = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,
                                              "Calibration assistant",
                                              "This calibration assistant will help you create a calibration in the " +
-                                             "NanoVNASaver application.  It will sweep the standards for you, and "+
+                                             "TinySASaver application.  It will sweep the standards for you, and "+
                                              "guide you through the process.<br><br>" +
                                              "Before starting, ensure you have Open, Short and Load standards " +
                                              "available, and the cables you wish to have calibrated with the device " +
                                              "connected.<br><br>" +
                                              "If you want a 2-port calibration, also have a \"through\" connector " +
                                              "to hand.<br><br>" +
-                                             "<b>The best results are achieved by having the NanoVNA calibrated " +
+                                             "<b>The best results are achieved by having the TinySA calibrated " +
                                              "on-device for the full span of interest and saved to save slot 0 " +
                                              "before starting.</b><br><br>" +
                                              "Once you are ready to proceed, press Ok",
@@ -651,8 +651,8 @@ class CalibrationWindow(QtWidgets.QWidget):
             return
         logger.info("Starting automatic calibration assistant.")
         if not self.app.serial.is_open:
-            QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information, "NanoVNA not connected",
-                                  "Please ensure the NanoVNA is connected before attempting calibration.").exec()
+            QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information, "TinySA not connected",
+                                  "Please ensure the TinySA is connected before attempting calibration.").exec()
             self.btn_automatic.setDisabled(False)
             return
 
@@ -664,7 +664,7 @@ class CalibrationWindow(QtWidgets.QWidget):
 
         short_step = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,
                                            "Calibrate short",
-                                           "Please connect the \"short\" standard to port 0 of the NanoVNA.\n\n" +
+                                           "Please connect the \"short\" standard to port 0 of the TinySA.\n\n" +
                                            "Press Ok when you are ready to continue.",
                                            QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
 
@@ -689,7 +689,7 @@ class CalibrationWindow(QtWidgets.QWidget):
 
             open_step = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,
                                               "Calibrate open",
-                                              "Please connect the \"open\" standard to port 0 of the NanoVNA.\n\n" +
+                                              "Please connect the \"open\" standard to port 0 of the TinySA.\n\n" +
                                               "Either use a supplied open, or leave the end of the cable unconnected " +
                                               "if desired.\n\n" +
                                               "Press Ok when you are ready to continue.",
@@ -711,7 +711,7 @@ class CalibrationWindow(QtWidgets.QWidget):
             self.nextStep = 2
             load_step = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,
                                               "Calibrate load",
-                                              "Please connect the \"load\" standard to port 0 of the NanoVNA.\n\n" +
+                                              "Please connect the \"load\" standard to port 0 of the TinySA.\n\n" +
                                               "Press Ok when you are ready to continue.",
                                               QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
 
@@ -752,7 +752,7 @@ class CalibrationWindow(QtWidgets.QWidget):
             else:
                 isolation_step = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,
                                                        "Calibrate isolation",
-                                                       "Please connect the \"load\" standard to port 1 of the NanoVNA.\n\n" +
+                                                       "Please connect the \"load\" standard to port 1 of the TinySA.\n\n" +
                                                        "If available, also connect a load standard to port 0.\n\n" +
                                                        "Press Ok when you are ready to continue.",
                                                        QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
@@ -774,7 +774,7 @@ class CalibrationWindow(QtWidgets.QWidget):
             through_step = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,
                                                  "Calibrate through",
                                                  "Please connect the \"through\" standard between port 0 and port 1 " +
-                                                 "of the NanoVNA.\n\n" +
+                                                 "of the TinySA.\n\n" +
                                                  "Press Ok when you are ready to continue.",
                                                  QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
 
@@ -842,7 +842,7 @@ class Calibration:
 
     useIdealOpen = True
     openIdeal = np.complex(1, 0)
-    openC0 = 2.1 * 10E-14  # Subtract 50fF for the nanoVNA calibration if nanoVNA is calibrated?
+    openC0 = 2.1 * 10E-14  # Subtract 50fF for the tinySA calibration if tinySA is calibrated?
     openC1 = 5.67 * 10E-23
     openC2 = -2.39 * 10E-31
     openC3 = 2.0 * 10E-40
@@ -1003,7 +1003,7 @@ class Calibration:
             return False
         try:
             file = open(filename, "w+")
-            file.write("# Calibration data for NanoVNA-Saver\n")
+            file.write("# Calibration data for TinySA-Saver\n")
             for note in self.notes:
                 file.write("! " + note + "\n")
             file.write("# Hz ShortR ShortI OpenR OpenI LoadR LoadI ThroughR ThroughI IsolationR IsolationI\n")

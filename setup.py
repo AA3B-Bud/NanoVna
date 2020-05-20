@@ -1,4 +1,4 @@
-#  NanoVNASaver - a python program to view and export Touchstone data from a NanoVNA
+#  TinySASaver - a python program to view and export Touchstone data from a TinySA
 #  Copyright (C) 2019.  Rune B. Broberg
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -15,7 +15,7 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import sys
-from NanoVNASaver.about import version
+from TinySASaver.about import version
 
 if sys.version_info < (3, 7):
     print("You need at least Python 3.7 for this application!")
@@ -34,8 +34,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
-    name='NanoVNASaver',
-    url='https://github.com/mihtjel/nanovna-saver',
+    name='TinySASaver',
+    url='https://github.com/mihtjel/tinysa-saver',
     version=version,
     author='Rune B. Broberg',
     author_email='',
@@ -45,7 +45,7 @@ setup(
     license='LICENSE.txt',
     entry_points={
         'console_scripts': [
-            'NanoVNASaver = NanoVNASaver.__main__:main'
+            'TinySASaver = TinySASaver.__main__:main'
         ],
     },
     install_requires=[

@@ -1,5 +1,5 @@
-#  NanoVNASaver
-#  A python program to view and export Touchstone data from a NanoVNA
+#  TinySASaver
+#  A python program to view and export Touchstone data from a TinySA
 #  Copyright (C) 2019.  Rune B. Broberg
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@
 import unittest
 
 # Import targets to be tested
-from NanoVNASaver.RFTools import RFTools
+from TinySASaver.RFTools import RFTools
 rft = RFTools()
 
 
@@ -26,7 +26,7 @@ rft = RFTools()
 # RFTools.parseFrequency will hopefully go away in future
 # and be specialised by input field and device, like
 # parse_clamp_min=50000 for sweep input with
-# a nanovna version 1 attached ...
+# a tinysa version 1 attached ...
 # the hardware developer already announced a successor
 # which will have different limits
 class TestCases(unittest.TestCase):

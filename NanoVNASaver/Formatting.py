@@ -1,5 +1,5 @@
-#  NanoVNASaver
-#  A python program to view and export Touchstone data from a NanoVNA
+#  TinySASaver
+#  A python program to view and export Touchstone data from a TinySA
 #  Copyright (C) 2019.  Rune B. Broberg
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import math
 
-from NanoVNASaver import SITools
+from TinySASaver import SITools
 
 FMT_FREQ = SITools.Format(space_str=" ")
 FMT_FREQ_INPUTS = SITools.Format(max_nr_digits=10, allow_strip=True, printable_min=0, unprintable_under="- ")

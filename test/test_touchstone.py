@@ -1,5 +1,5 @@
-#  NanoVNASaver
-#  A python program to view and export Touchstone data from a NanoVNA
+#  TinySASaver
+#  A python program to view and export Touchstone data from a TinySA
 #  Copyright (C) 2019.  Rune B. Broberg
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@ import unittest
 import logging
 
 # Import targets to be tested
-from NanoVNASaver.Touchstone import Options, Touchstone
+from TinySASaver.Touchstone import Options, Touchstone
 
 
 class TestTouchstoneOptions(unittest.TestCase):
@@ -78,10 +78,10 @@ class TestTouchstoneTouchstone(unittest.TestCase):
         with self.assertLogs(level=logging.WARNING) as cm:
             ts.load()
         self.assertEqual(cm.output, [
-            'WARNING:NanoVNASaver.Touchstone:Non integer resistance value: 50.0',
-            'WARNING:NanoVNASaver.Touchstone:Comment after header: !freq ReS11 ImS11 ReS21 ImS21 ReS12 ImS12 ReS22 ImS22',
-            'WARNING:NanoVNASaver.Touchstone:Frequency not ascending: 15000000.0 0.849810063 -0.4147357 -0.000306106 0.0041482 0.0 0.0 0.0 0.0',
-            'WARNING:NanoVNASaver.Touchstone:Reordering data',
+            'WARNING:TinySASaver.Touchstone:Non integer resistance value: 50.0',
+            'WARNING:TinySASaver.Touchstone:Comment after header: !freq ReS11 ImS11 ReS21 ImS21 ReS12 ImS12 ReS22 ImS22',
+            'WARNING:TinySASaver.Touchstone:Frequency not ascending: 15000000.0 0.849810063 -0.4147357 -0.000306106 0.0041482 0.0 0.0 0.0 0.0',
+            'WARNING:TinySASaver.Touchstone:Reordering data',
             ])
         self.assertEqual(str(ts.opts), "# HZ S RI R 50")
         self.assertEqual(len(ts.s11data), 101)
