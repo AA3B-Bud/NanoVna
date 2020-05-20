@@ -3,7 +3,7 @@
 .vscode
 /build/
 /dist/
-/TinySA-saver.spec
+/nanovna-saver.spec
 *.egg-info/
 *.pyc
 *.cal

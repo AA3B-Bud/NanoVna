@@ -1,6 +1,6 @@
 #! /bin/env python
 
-#  TinySASaver - a python program to view and export Touchstone data from a TinySA
+#  NanoVNASaver - a python program to view and export Touchstone data from a NanoVNA
 #  Copyright (C) 2019.  Rune B. Broberg
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -20,17 +20,17 @@ import sys
 
 from PyQt5 import QtWidgets, QtCore
 
-from .TinySASaver import TinySASaver
+from .NanoVNASaver import NanoVNASaver
 from .about import debug
 
 
 def main():
-    print("TinySASaver " + TinySASaver.version)
+    print("NanoVNASaver " + NanoVNASaver.version)
     print("Copyright (C) 2019 Rune B. Broberg")
     print("This program comes with ABSOLUTELY NO WARRANTY")
     print("This program is licensed under the GNU General Public License version 3")
     print("")
-    print("See https://github.com/mihtjel/TinySA-saver for further details")
+    print("See https://github.com/mihtjel/nanovna-saver for further details")
     # Main code goes here
     console_log_level = logging.WARNING
     file_log_level = logging.DEBUG
@@ -48,7 +48,7 @@ def main():
     if debug:
         console_log_level = logging.DEBUG
 
-    logger = logging.getLogger("TinySASaver")
+    logger = logging.getLogger("NanoVNASaver")
     logger.setLevel(logging.DEBUG)
     ch = logging.StreamHandler()
     ch.setLevel(console_log_level)
@@ -70,7 +70,7 @@ def main():
 
     QtWidgets.QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
     app = QtWidgets.QApplication(sys.argv)
-    window = TinySASaver()
+    window = NanoVNASaver()
     window.show()
     app.exec_()
 

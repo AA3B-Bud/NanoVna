@@ -1,5 +1,5 @@
-#  TinySASaver
-#  A python program to view and export Touchstone data from a TinySA
+#  NanoVNASaver
+#  A python program to view and export Touchstone data from a NanoVNA
 #  Copyright (C) 2019.  Rune B. Broberg
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -20,11 +20,11 @@ from typing import List
 from PyQt5 import QtGui, QtWidgets, QtCore
 from PyQt5.QtCore import pyqtSignal
 
-from TinySASaver import RFTools
-from TinySASaver.Formatting import format_frequency, format_capacitance, format_inductance, format_complex_imp, \
+from NanoVNASaver import RFTools
+from NanoVNASaver.Formatting import format_frequency, format_capacitance, format_inductance, format_complex_imp, \
     format_resistance, format_vswr, format_phase, format_q_factor, format_gain, format_group_delay
 
-from TinySASaver.Inputs import MarkerFrequencyInputWidget as FrequencyInput
+from NanoVNASaver.Inputs import MarkerFrequencyInputWidget as FrequencyInput
 
 
 class Marker(QtCore.QObject):

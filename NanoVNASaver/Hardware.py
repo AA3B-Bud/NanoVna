@@ -1,4 +1,4 @@
-#  TinySASaver - a python program to view and export Touchstone data from a TinySA
+#  NanoVNASaver - a python program to view and export Touchstone data from a NanoVNA
 #  Copyright (C) 2019.  Rune B. Broberg
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -33,8 +33,8 @@ class VNA:
     features = []
 
     def __init__(self, app, serial_port: serial.Serial):
-        from TinySASaver.TinySASaver import TinySASaver
-        self.app: TinySASaver = app
+        from NanoVNASaver.NanoVNASaver import NanoVNASaver
+        self.app: NanoVNASaver = app
         self.serial = serial_port
         self.version: Version = Version("0.0.0")
 
@@ -44,18 +44,18 @@ class VNA:
         tmp_vna = VNA(app, serial_port)
         tmp_vna.flushSerialBuffers()
         firmware = tmp_vna.readFirmware()
-        if firmware.find("TinySA-H") > 0:
-            logger.info("Type: TinySA-H")
-            return TinySA_H(app, serial_port)
-        if firmware.find("TinySA-F") > 0:
-            logger.info("Type: TinySA-F")
-            return TinySA_F(app, serial_port)
-        elif firmware.find("TinySA") > 0:
-            logger.info("Type: Generic TinySA")
-            return TinySA(app, serial_port)
+        if firmware.find("NanoVNA-H") > 0:
+            logger.info("Type: NanoVNA-H")
+            return NanoVNA_H(app, serial_port)
+        if firmware.find("NanoVNA-F") > 0:
+            logger.info("Type: NanoVNA-F")
+            return NanoVNA_F(app, serial_port)
+        elif firmware.find("NanoVNA") > 0:
+            logger.info("Type: Generic NanoVNA")
+            return NanoVNA(app, serial_port)
         else:
-            logger.warning("Did not recognize TinySA type from firmware.")
-            return TinySA(app, serial_port)
+            logger.warning("Did not recognize NanoVNA type from firmware.")
+            return NanoVNA(app, serial_port)
 
     def readFeatures(self) -> List[str]:
         features = []
@@ -227,8 +227,8 @@ class InvalidVNA(VNA):
         return
 
 
-class TinySA(VNA):
-    name = "TinySA"
+class NanoVNA(VNA):
+    name = "NanoVNA"
 
     def __init__(self, app, serial_port):
         super().__init__(app, serial_port)
@@ -354,12 +354,12 @@ class TinySA(VNA):
             sleep(1)
 
 
-class TinySA_H(TinySA):
-    name = "TinySA-H"
+class NanoVNA_H(NanoVNA):
+    name = "NanoVNA-H"
 
 
-class TinySA_F(TinySA):
-    name = "TinySA-F"
+class NanoVNA_F(NanoVNA):
+    name = "NanoVNA-F"
 
 
 class Version:

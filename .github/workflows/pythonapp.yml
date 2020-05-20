@@ -20,7 +20,7 @@ jobs:
     - name: Lint with pylint
       run: |
         pip install pylint
-        pylint --exit-zero TinySASaver
+        pylint --exit-zero NanoVNASaver
     - name: Unittests
       run: |
         pip install coverage

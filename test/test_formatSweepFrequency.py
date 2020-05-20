@@ -1,4 +1,4 @@
-#  TinySASaver - a python program to view and export Touchstone data from a TinySA
+#  NanoVNASaver - a python program to view and export Touchstone data from a NanoVNA
 #  Copyright (C) 2019.  Rune B. Broberg
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@ import sys
 import unittest
 
 # Import targets to be tested
-from TinySASaver import RFTools
+from NanoVNASaver import RFTools
 rft = RFTools.RFTools()
 
 class TestCases(unittest.TestCase):

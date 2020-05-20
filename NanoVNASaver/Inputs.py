@@ -1,5 +1,5 @@
-#  TinySASaver
-#  A python program to view and export Touchstone data from a TinySA
+#  NanoVNASaver
+#  A python program to view and export Touchstone data from a NanoVNA
 #  Copyright (C) 2019.  Rune B. Broberg
 #
 #  This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
 #  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from PyQt5 import QtGui, QtWidgets, QtCore
-from TinySASaver.Formatting import format_frequency_inputs
+from NanoVNASaver.Formatting import format_frequency_inputs
 
 
 class FrequencyInputWidget(QtWidgets.QLineEdit):
